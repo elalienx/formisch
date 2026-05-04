@@ -27,11 +27,13 @@ export function TextInput({
 }: TextInputProps) {
   const { name, required } = props;
   const [value, setValue] = useState<string | number | undefined>(input);
+  
   useEffect(() => {
     if (!Number.isNaN(input)) {
       setValue(input);
     }
   }, [input]);
+
   return (
     <div className={clsx('px-8 lg:px-10', className)}>
       <InputLabel name={name} label={label} required={required} />

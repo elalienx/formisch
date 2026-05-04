@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { Tabs } from './components';
 import './global.css';
 import { useEventListener } from './hooks';
+import Homes from './routes/homes';
 import Login from './routes/login';
 import Nested from './routes/nested';
 import Payment from './routes/payment';
@@ -13,9 +14,11 @@ import { disableTransitions } from './utils';
 export function App() {
   useEventListener('resize', disableTransitions);
 
+  const links = ['Login', 'Payment', 'Todos', 'Special', 'Nested', 'Homes'];
+
   return (
     <BrowserRouter>
-      <Tabs items={['Login', 'Payment', 'Todos', 'Special', 'Nested']} />
+      <Tabs items={links} />
       <main>
         <Routes>
           <Route path="/" element={<Navigate to="/login" replace />} />
@@ -24,6 +27,7 @@ export function App() {
           <Route path="/todos" element={<Todos />} />
           <Route path="/special" element={<Special />} />
           <Route path="/nested" element={<Nested />} />
+          <Route path="/homes" element={<Homes property="home" />} />
         </Routes>
       </main>
     </BrowserRouter>
