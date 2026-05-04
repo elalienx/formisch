@@ -60,7 +60,7 @@ export default function Special() {
         </Field>
 
         {/* Range */}
-        {/* <Field of={form} path={['range']}>
+        {<Field of={form} path={['range']}>
           {(field) => (
             <Slider
               {...field.props}
@@ -69,7 +69,7 @@ export default function Special() {
               label={`Range: ${rangeValue}`}
             />
           )}
-        </Field> */}
+        </Field> 
 
         {/* Checkox list */}
         <label className="block px-8 font-medium md:text-lg lg:mb-5 lg:px-10 lg:text-xl">
