@@ -1,4 +1,4 @@
-import { Field, Form, getInput, useForm } from '@formisch/react';
+import { Field, Form, useForm } from '@formisch/react';
 import * as v from 'valibot';
 import {
   Checkbox,
@@ -7,12 +7,11 @@ import {
   FormHeader,
   RadioGroup,
   Select,
-  Slider,
   TextInput,
 } from '../components';
 
 const schema = v.object({
-  range: v.optional(v.string(), '50'),
+  range: v.number('must not be empty'),
   checkbox_list: v.array(v.string()),
   checkbox_item: v.optional(v.boolean(), false),
   radio: v.optional(v.string()),
@@ -22,9 +21,17 @@ const schema = v.object({
   file_item: v.optional(v.file()),
 });
 
+const initialInput = {
+  range: 69,
+  checkbox_list: ['boat', 'car'],
+  checkbox_item: true,
+  radio: 'plane',
+  select_list: ['boat', 'car'],
+  select_item: 'plane',
+};
+
 export default function Special() {
-  const form = useForm({ schema: schema });
-  const rangeValue = getInput(form, { path: ['range'] });
+  const form = useForm({ schema: schema, initialInput: initialInput });
   const options = [
     { label: '⛵️ Boat', value: 'boat' },
     { label: '🚗 Car', value: 'car' },
@@ -53,7 +60,7 @@ export default function Special() {
         </Field>
 
         {/* Range */}
-        <Field of={form} path={['range']}>
+        {/* <Field of={form} path={['range']}>
           {(field) => (
             <Slider
               {...field.props}
@@ -62,7 +69,7 @@ export default function Special() {
               label={`Range: ${rangeValue}`}
             />
           )}
-        </Field>
+        </Field> */}
 
         {/* Checkox list */}
         <label className="block px-8 font-medium md:text-lg lg:mb-5 lg:px-10 lg:text-xl">
