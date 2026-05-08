@@ -47,6 +47,7 @@ export default function Special() {
       onSubmit={(output) => console.log(output)}
     >
       <FormHeader of={form} heading="Special form" />
+
       <div className="space-y-8 md:space-y-10 lg:space-y-12">
         {/* Number */}
         <Field of={form} path={['range']}>
