@@ -62,18 +62,16 @@ export default function Special() {
         </Field>
 
         {/* Range */}
-        {
-          <Field of={form} path={['range']}>
-            {(field) => (
-              <Slider
-                {...field.props}
-                input={field.input}
-                errors={field.errors}
-                label={`Range: ${rangeValue}`}
-              />
-            )}
-          </Field>
-        }
+        <Field of={form} path={['range']}>
+          {(field) => (
+            <Slider
+              {...field.props}
+              input={field.input}
+              errors={field.errors}
+              label={`Range: ${rangeValue}`}
+            />
+          )}
+        </Field>
 
         {/* Checkox list */}
         <label className="block px-8 font-medium md:text-lg lg:mb-5 lg:px-10 lg:text-xl">
