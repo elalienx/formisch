@@ -12,7 +12,11 @@ import {
 } from '../components';
 
 const schema = v.object({
-  range: v.number('must not be empty'),
+  range: v.pipe(
+    v.union([v.string(), v.number()]),
+    v.toNumber('must be a number'),
+    v.minValue(3, 'must be bigger than 3')
+  ),
   checkbox_list: v.array(v.string()),
   checkbox_item: v.optional(v.boolean(), false),
   radio: v.optional(v.string()),
@@ -32,7 +36,10 @@ const initialInput = {
 };
 
 export default function Special() {
-  const form = useForm({ schema: schema, initialInput: initialInput });
+  const form = useForm({
+    schema: schema,
+    initialInput: initialInput,
+  });
   const rangeValue = getInput(form, { path: ['range'] });
   const options = [
     { label: '⛵️ Boat', value: 'boat' },
